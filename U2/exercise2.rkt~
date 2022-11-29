@@ -1,0 +1,31 @@
+#lang racket
+;Exercise 7
+(define (nat-wurzel x exercise1)
+  (define (sum-ungerade runVar x sum)
+    (
+     if (> runVar x) sum
+        (if (not(= (modulo runVar 2) 0)) (sum-ungerade (+ runVar 1 ) x (+ sum runVar)) (sum-ungerade (+ runVar 1) x sum))
+    ))
+  (define (sum-count runVar x sum)
+    (
+     if (> runVar x) sum
+        (if (not (= (modulo runVar 2) 0)) (sum-count (+ runVar 1) x (+ sum 1)) (sum-count (+ runVar 1) x sum))))
+  (if (= exercise1 1) (sum-ungerade 1 x 0) (sum-count 1 x 0)))
+
+(nat-wurzel 7 1)
+(nat-wurzel 7 2)
+
+(nat-wurzel 650 1)
+(nat-wurzel 650 2)
+
+;Exercise 8
+(define (zahl-umdrehen x)
+  (define (zahl-int a )
+   (define lastDigit (modulo a 10))
+   (define nextDigits (/ a 10))
+   (if (= nextDigits 0) lastDigit (zahl-int nextDigits)))
+  (
+   zahl-int x
+  ))
+
+(zahl-umdrehen 23)
